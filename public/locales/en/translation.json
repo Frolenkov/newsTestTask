@@ -1,0 +1,14 @@
+{
+    "profile": "Profile",
+    "home": "Home",
+    "news": "News",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "getMoreNews": "Get more news",
+    "loadingError": "Loading error, please try again",
+    "simpleError": "Something went wrong",
+    "welcome": "Welcome",
+    "signIn": "Sign in",
+    "login": "Login",
+    "incorrectAuth":"Incorrect login or password"
+}

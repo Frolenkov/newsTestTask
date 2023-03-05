@@ -4,6 +4,7 @@ import { mockedUser } from "../../../common/utils/mockedData";
 import { useAppDispatch } from "../../../hooks/redux";
 import { login } from "../../../store/auth/authSlice";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type FormValues = {
   login: string,
@@ -13,6 +14,7 @@ type FormValues = {
 const Form = () => {
   const dispatch = useAppDispatch()
   const [error, setError] = useState<string>("");
+  const { t } = useTranslation();
 
   const { handleSubmit, control } = useForm<FormValues>();
 
@@ -21,22 +23,23 @@ const Form = () => {
       dispatch(login(data.login))
       return;
     }
-    setError("Incorrect login or password")
+    setError(() => t("incorrectAuth"))
   };
 
   return (
     <Grid mb={5}>
       <Typography component="h2" variant="h5">
-        Sign in
+        {t("signIn")}
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid container justifyContent="space-between" marginY={2}>
         <Controller
           name="login"
           control={control}
           defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <TextField
-              label="Email"
+              label="Login"
               variant="filled"
               value={value}
               onChange={onChange}
@@ -45,7 +48,6 @@ const Form = () => {
               type="text"
             />
           )}
-          rules={{ required: 'Login required' }}
         />
         <Controller
           name="password"
@@ -62,11 +64,11 @@ const Form = () => {
               type="password"
             />
           )}
-          rules={{ required: 'Password required' }}
         />
+        </Grid>
         <div>
           <Button type="submit" variant="contained" color="primary">
-            Login
+            {t("login")}
           </Button>
         </div>
       </form>
